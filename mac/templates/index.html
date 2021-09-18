@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.google.com/specimen/Baloo+Bhaina+2?preview.text_type=custom/">
+    <title>Welcome To My Awesome Cart</title>
+  </head>
+  <style>
+    body{
+      background-color: #16ec93;
+      background: url("https://images2.alphacoders.com/535/thumb-1920-535390.png");
+      background-repeat: no-repeat;
+      
+    }
+
+    .neon-button2 {
+      margin-left: 0%;
+  display: inline-block;
+  cursor: pointer;
+ font-size: 22px;
+ width: 225px;
+ text-align: center;
+  text-decoration: none;
+  color: rgb(250, 249, 249);
+  border: #ffffff 0.105em solid;
+  padding: 0.25em 1em;
+  border-radius: 0.20em;
+  position: relative;
+}
+  
+
+    .neon-button {
+      margin-left: 23%;
+  display: inline-block;
+  cursor: pointer;
+ font-size: 22px;
+ width: 225px;
+ text-align: center;
+  text-decoration: none;
+  color: rgb(250, 249, 249);
+  border: #ffffff 0.105em solid;
+  padding: 0.25em 1em;
+  border-radius: 0.20em;
+  position: relative;
+}
+
+.neon-button::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  /* background: #16ecbe; */
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  filter: blur(1em);
+  opacity: 0.7;
+}
+
+
+
+
+.neon-button2::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  /* background: #16ecbe; */
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  filter: blur(1em);
+  opacity: 0.7;
+}
+
+.neon-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em #0026ff;
+  opacity: 0;
+  background-color: #16ecbe;
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+
+
+.neon-button2::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em #1900ff;
+  opacity: 0;
+  background-color: #16ecbe;
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+
+.neon-button:hover, .neon-button:focus {
+  background:#f7f7f7 ;
+  color:black;
+  font-weight: 700;
+  text-shadow: none;
+
+}
+
+.neon-button2:hover, .neon-button2:focus {
+  background:#f7f7f7 ;
+  color:black;
+  font-weight: 700;
+  text-shadow: none;
+
+}
+
+.neon-button:hover::before, .neon-button:focus::before {
+  opacity: 1;
+}
+.neon-button:hover::after,
+.neon-button:focus::after {
+  opacity: 1;
+}
+
+.neon-button2:hover::before, .neon-button2:focus::before {
+  opacity: 1;
+}
+.neon-button2:hover::after,
+.neon-button2:focus::after {
+  opacity: 1;
+}
+
+
+  </style>
+  <body>
+
+    <nav class="navbar navbar-expand-lg" style="color: white">
+      <a class="navbar-brand" href="/shop" style="font-size: 33px; margin-top:-1%; margin-bottom:-1%; color:white; margin-left:65%; padding: 3px;" ><b>All</b></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="color:white">
+        <ul class="navbar-nav mr-auto" style="color:white">
+          <li class="nav-item active">
+            <a class="nav-link" href="/shop" style="color:white; font-size: 20px;">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/shop/about" style="color:white; font-size: 20px;">About Us</a>
+          </li>
+    
+          <li class="nav-item">
+            <a class="nav-link" href="/shop/tracker" style="color:white ; font-size: 20px;">Tracker</a>
+          </li>
+    
+    
+           <li class="nav-item">
+            <a class="nav-link" href="/shop/contact" style="color:white; font-size: 20px;">Contact Us</a>
+          </li>
+        </ul>
+</div> </nav>   
+<br>
+{% if user.is_authenticated %}
+   <h2 style="color:rgb(250, 239, 244); margin-left: 28%; font-family:Baloo Bhai, cursive">Welcome {{user}}</h2>
+{% endif %}
+
+    <div class="row">
+      <div class="col-md-7">
+    <h1 style="color: aliceblue;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 100px; font-weight:900 ;margin-top: 12%; margin-left: 9%;">Shop With Us</h1>
+<br>
+    <p style="color: aliceblue;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px; margin-left:3%; margin-right: 2%; text-align:center;">While eStore is very versatile and highly adaptive, it is still the best if you are searching for <br>an apparel eCommerce website template. The options are <br>endless when it comes to the type of products<br> you would like to push online.
+</p>
+<br>
+<br>
+
+<a href="/shop/" class ="neon-button">Get Started</a>
+<a  href="/shop/contact" class ="neon-button2">Contact Us</a>
+</div>
+<div class="col-md-5">
+  <br>
+  <br>
+  <br>
+  <br>
+<!-- 
+ <img src="https://image.shutterstock.com/image-photo/hands-holding-shoping-bags-260nw-517388650.jpg" style="height:29%; border-radius: 50%; margin-bottom: -12%; margin-left:-2%"> -->
+<img src="https://image.shutterstock.com/image-illustration/digital-generated-devices-on-desktop-260nw-1495869476.jpg" style="height: 55%; width: 95% ; margin-right:0%; margin-top:-2% ;border-radius: 50%; margin-left:18%">
+<img src="https://images.theconversation.com/files/351878/original/file-20200810-22-przb4a.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" style="border-radius: 50%; width: 70%; height:35%; width:60%; margin-top:-150%; margin-left:-29%">
+<img src="https://st.depositphotos.com/1000260/1604/i/950/depositphotos_16048415-stock-photo-happy-family-with-children.jpg" style=" border-radius: 50%; width: 55%; height:37%;margin-top:-10%; margin-left:12%">
+<br>
+<br>
+</div>
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

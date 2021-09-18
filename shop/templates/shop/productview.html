@@ -1,0 +1,327 @@
+{% extends 'shop/basic.html' %}
+
+{% block title%} {{product.product_name}} - My Awesome Cart{% endblock %}
+{% block css %}
+.col-md-3
+{
+display: inline-block;
+margin-left:-4px;
+}
+.carousel-indicators .active {
+background-color: blue;
+}
+.col-md-3 img{
+width: 280px;
+height: 270px;
+}
+body .carousel-indicator li{
+background-color: blue;
+border-radius: 25%;
+}
+body .carousel-indicators{
+bottom: -45px;
+}
+body .carousel-control-prev-icon,
+body .carousel-control-next-icon{
+background-color: black;
+border-radius: 25%;
+}
+.carousel-control-prev,
+.carousel-control-next{
+top: auto;
+bottom: auto;
+padding-top: 222px;
+}
+body .no-padding{
+padding-left: 0,
+padding-right: 0;
+}
+
+img{
+  
+}
+
+{% endblock %}
+
+{% block body %}
+<div class="container my-4">
+    <div class="row">
+    <div class="col-md-4">
+    <div class="row">
+        <img src="/media/{{product.image}}"  style="width:330px;  height:400px;  transition: transform 0.25s ease;
+        cursor: zoom-in;">
+    </div>
+    <br>
+        <div class="row">
+            <button class="btn btn-primary mx-3">Buy Now</button>
+            <span id="divpr{{product.id}}" class="divpr">
+                <button id="pr{{product.id}}" class="btn btn-primary cart">Add To Cart</button>
+            </span>
+        </div>
+
+    </div>
+
+    <div class="col-md-8">
+        <h3>{{product.product_name}}</h3>
+        <br>
+        <h5>{{product.subcategory}}</h5>
+<br>
+<br>
+<h5 style=" color: red;">Discount: 50% </h5>
+
+        <p><b>Rs.{{product.price}} </b></p>
+        
+
+        <h6>Harry Up!!  Stock is limited. </h6>
+        <br>
+        <p>{{product.desc}}</p>
+
+
+    </div>
+    </div>
+
+
+</div>
+<br>
+<br>
+<br>
+<div class="container my-3">
+
+<hr style="background:blue">
+    <div class="container" style="background: rgba(255, 255,255, 0.5); border-radius:1%; ">
+    <h2 style="color: rgb(4, 4, 56);font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ">Give Your Review</h2>
+      {% if user.is_authenticated %}
+
+    {% for comment in comments %}
+    <div class="row my-3">
+        <div class="col-md-1  ">
+        <img class="rounded mx-auto d-block w-100 p-2" src="data:image/png;base64,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"  alt="user">
+        </div>
+        <div class="col-md-11 ">
+        <b> {{comment.user}} </b> at {{comment.timestamp}}
+        <div>  {{comment.comment}}  </div>
+    </div>
+    </div>
+    {% endfor %}
+
+    <form action="/shop/postComment/" method="post">
+        {% csrf_token %}
+      <input type="text" name="comment" class="form-control" placeholder="Commenting publicly as {{user}}">
+      <input type="hidden" name="postSno" value="{{product.id}}" >
+      <br>
+        <input type="submit" value="Submit" style="background: green; color: white; margin-left: 94%">
+    </form>
+        <br>
+{% else %}
+<h6>Login Please or Create Your Account</h6>
+{% endif %}
+
+
+
+</div>
+
+<hr style="background:rgb(59, 59, 82)">
+
+    {% for producted, range, nSlides in allProds %}
+
+    {% if product.category ==  producted.0.category %} 
+    <h5 class="my-4">Flash Sale On {{producted.0.category}} - Recommended Items</h5>
+    <div class="row">
+        <div id="demo{{forloop.counter}}" class="col carousel slide my-3" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
+                {% for i in range %}
+                <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
+                {% endfor %}
+            </ul>
+            <div class="container carousel-inner no-padding">
+                <div class="carousel-item active">
+                    {% for i in producted %}
+                    <div class="col-xs-3 col-sm-3 col-md-3">
+                        <div class="card align-items-center" style="width: 18rem;">
+                            <img src='/media/{{i.image}}' class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title" id="namepr{{i.id}}">{{i.product_name}}</h5>
+                                <p class="card-text">{{i.desc|slice:"0:53"}}...</p>
+                                <h6 class="card-title" >Price : <span id="pricepr{{i.id}}">{{i.price}}</span></h6>
+                                <a href="/shop/"><button  class="btn btn-primary cart">ViewMore</button></a>
+                            
+                                <a href="/shop/products/{{i.id}}"><button id="qv{{i.id}}" class="btn btn-primary cart">QuickView</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+                </div>
+                <div class="carousel-item">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- left and right controls for the slide -->
+        <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    {% endif %} 
+    {% endfor %}
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+    <!-- Footer -->
+<footer class="page-footer font-small pt-4" style="background-color: rgb(29, 29, 99); color: aliceblue;">
+    <div class="container text-center text-md-left">
+      <div class="row text-center text-md-left mt-3 pb-3">
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Praaki</h6>
+          <p> The internet has revolutionised the way we do our shopping. The businessman regards the internet as a modern effective tool for business transactions. Online shopping is the act of purchasing products or services over the internet..</p>
+        </div>
+        <hr class="w-100 clearfix d-md-none" style=" border-top: 1px solid #f8f9fa;">
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+          <p>
+            <a href="#!">Gaming Mouse</a>
+          </p>
+          <p>
+            <a href="#!">Expensive Wrist Watches</a>
+          </p>
+          <p>
+            <a href="#!">Laptop</a>
+          </p>
+          <p>
+            <a href="#!">Shoes</a>
+          </p>
+        </div>
+        <hr class="w-100 clearfix d-md-none" style=" border-top: 1px solid #f8f9fa;">
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
+          <p>
+            <a href="/shop/">Home</a>
+          </p>
+          <p>
+            <a href="/shop/checkout">Your Account</a>
+          </p>
+          <p>
+            <a href="/shop/about">About Us</a>
+          </p>
+          <p>
+            <a href="/shop/contact">Help</a>
+          </p>
+        </div>
+        <hr class="w-100 clearfix d-md-none" style=" border-top: 1px solid #f8f9fa;">
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+          <p>
+            <i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+          <p>
+            <i class="fas fa-envelope mr-3"></i> mycart2403@gmail.com</p>
+          <p>
+            <i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+          <p>
+            <i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+        </div>
+      </div>
+      <hr style=" border-top: 1px solid #f8f9fa;">
+      <div class="row d-flex align-items-center">
+  
+        <!-- Grid column -->
+        <div class="col-md-7 col-lg-8">
+          <p class="text-center text-md-left">© 2020 Copyright:
+            <a href="#">
+              <strong> mycart.com</strong>
+            </a>
+          </p>
+        </div>
+        <div class="col-md-5 col-lg-4 ml-lg-0">
+        <div class="row">
+              <div class="col-md-12 py-5">
+                <div class="mb-5 flex-center">
+                  <a href="https://twitter.com">
+                    <i ><img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png" style="width: 12%; margin-top: 1%;"> </i>
+          </a>
+                  <a href="https://instagram.com">
+                    <i> <img src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c521.png" style="width: 12%; margin-top: 1%; margin-left: 3%;"></i>
+                  </a>
+                  <a href="https://github.com">
+                      <i> <img src="https://user-images.githubusercontent.com/6385983/34427109-5772d042-ec0c-11e7-896d-7e9096b92856.png" style="width: 12%; margin-top: 1%; margin-left: 3%; border-radius: 8px; border-top:  1px;"></i>
+                    </a>
+                    <a href="https://youtube.com">
+                    <i ><img src="https://www.freeiconspng.com/thumbs/youtube-logo-png/youtube-logo-png-picture-13.png" style="width: 16%; margin-top: 1%; margin-left: 2%"> </i>
+                  </a>
+                  <a href="https://facebook.com">
+                    <i ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg-JpfC4gKgHEHQeUuv4LrEpy5In1LnWkwgwMTxE_SIGHeG4EaPw4juf0w6nn5SDQj5mw&usqp=CAU" style="width: 12%; margin-top: 1%; margin-left: 2%; border-radius: 8px;"> </i>
+                  </a>
+                  <a href="https://google.com">
+                    <i ><img src="https://ipullrank.com/wp-content/uploads/2020/07/png-transparent-google-logo-g-suite-google-guava-google-plus-company-text-logo.png" style="width: 12%; margin-top: 1%; margin-left: 2%; border-radius: 50%"> </i>
+                  </a>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+        </div>
+ </footer>
+
+    {% endblock %}
+
+
+    {% block js %}
+    <script>
+
+        if (localStorage.getItem('cart') == null) {
+            var cart = {};
+        } else {
+            cart = JSON.parse(localStorage.getItem('cart'));
+        }
+        console.log(cart);
+        var sum = 0;
+        var totalPrice = 0;
+        if ($.isEmptyObject(cart)) {
+            //if object is empty
+            $('#items').append(mystr);
+        } else {
+            for (item in cart) {
+                let name = cart[item][1];
+                let qty = cart[item][0];
+                let itemPrice = cart[item][2];
+                sum = sum + qty;
+                totalPrice = totalPrice + qty * itemPrice
+                mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">
+                            ${name}
+                            <span class="badge badge-primary badge-pill">${qty}</span>
+                        </li>`
+                $('#items').append(mystr);
+            }
+        }
+        $('.divpr').on('click', 'button.cart', function() {
+    var idstr = this.id.toString();
+    if (cart[idstr] != undefined) {
+        qty = cart[idstr][0] + 1;
+        
+    } else {
+        qty = 1;
+        name = document.getElementById('name'+idstr).innerHTML
+        price = document.getElementById('price'+idstr).innerHTML
+        cart[idstr] = [qty, name, parseInt(price)];
+
+    }
+    
+    updateCart(cart);
+});
+
+        document.getElementById('cart').innerHTML = sum;
+        document.getElementById('totalprice').innerHTML = totalPrice;
+        $('#itemsJson').val(JSON.stringify(cart));
+    </script>
+        
+    {% endblock %}
+    
