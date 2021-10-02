@@ -10,59 +10,6 @@ import smtplib
 import ssl
 
 
-def mail(order):
-    port = 587  # For starttls
-    smtp_server = "smtp.gmail.com"
-    sender_email = "mycart2403@gmail.com"
-    receiver_email = order.email
-    password = 'Z3cs48gBO3hW'
-
-    order_id = order.id
-    items_json = json.loads(order.items_json)
-
-    name = order.name
-    email = order.email
-    address = order.address
-    city = order.city
-    state = order.state
-    zip_code = order.zip_code
-    phone = order.phone
-    item_display_info = ""
-    for valid, item_info in items_json.items():
-        qty = item_info[0]
-        name = item_info[1]
-        price = item_info[2]
-        item_display_info += f"Name :- {name}    qty :- {qty}    cost :- {price}\n  "
-    message = f"""\
-    Subject: MY AWESOME CART
-
-
-    Your order has been placed with order id {order_id} and amount {amount}
-    Your Items are :- 
-    {item_display_info}
-
-    Delivery Information
-    Name :- {name}
-    Email :- {email}
-    address :- {address}
-    city :- {city}
-    state :- {state}
-    zip_code :- {zip_code}
-    phone :- {phone}
-
-    Thankyou for shopping from My Awesome Cart. Wish you a good day ahead!
-    """
-    context = ssl.create_default_context()
-    with smtplib.SMTP(smtp_server, port) as server:
-        try:
-            server.ehlo()  # Can be omitted
-            server.starttls(context=context)
-            server.ehlo()  # Can be omitted
-            server.login(sender_email, password)
-            server.sendmail(sender_email, receiver_email, message)
-        except Exception as e:
-            print(e)
-
 def index(request):
     products = Product.objects.all()
     print(products)

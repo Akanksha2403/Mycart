@@ -11,7 +11,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <title>{% block title%} {% endblock %}</title>
      <style>
        {% block css %} {% endblock %}
@@ -27,17 +27,16 @@
       <form method='get' action='/shop/search/' class="form-inline" style="margin-left:27%">
         <input class="form-control mr-sm-2"  style="width: 450px" type="search" placeholder="Search" aria-label="Search" name="search" id="search" style="margin-left:25%">
       </form>
-  
-    
+
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
+
 {% if user.is_authenticated  %}
 <ul class="navbar-nav mr-2">
   <li class="nav-item dropdown">
   <a class="nav-link dropdown-toggle text-white"  href='#'  id="navbarDropdown" role="button" data-toggle="dropdown"> Welcome {{request.user}}</a>
   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/logout">Logout</a>
-            <a class="dropdown-item" href="/app/profup">profile</a>
 
           </div>
         </li>
@@ -56,7 +55,7 @@ SignUp
 {% endif %}
     </div>
     </nav>
-    
+
 
 
 
@@ -185,9 +184,12 @@ SignUp
           <h5 style="text-align: center">Or login with social account</h5>
 
             {% csrf_token %}<br>
-            <button class="btn" style="background:blue; color:white; width: 100%; font-size:22px"><a href="{% provider_login_url 'facebook' method='js_sdk' %}" style="background:blue; color:white">Login with facebook</a></button>
-            <br>
-            <button class="btn" style="background:Red; color:white; width: 100%;font-size:22px "><a href="{% provider_login_url 'google' %}" style=" color:white"">Login with Google</a></button>
+            <button class="btn" style="margin-bottom: 20px; text-align: center; width: 220px; height:36px; border:none; border-radius:2px; font-size: 15px; transition:0.2s; color:white;background-color:blue"><ion-icon name="logo-facebook" style="font-size:20px"></ion-icon>&nbsp<a href="{% provider_login_url 'facebook' method='oauth2' %}" style="color:white; margin-top: 5%">Login with facebook</a></button>
+
+            <button class="btn" style="margin-bottom: 20px; text-align: center; width: 220px; height:36px; border:none; border-radius:2px; font-size: 15px; transition:0.2s; color:white;background-color:red"><ion-icon name="logo-google" style="font-size:20px"></ion-icon>&nbsp<a href="{% provider_login_url 'google' %}" style=" color:white">Login with Google</a></button>
+             <button class="btn" style="margin-bottom: 20px; text-align: center; width: 220px; height:36px; border:none; border-radius:2px; font-size: 15px; transition:0.2s; color:white;background-color:black"><ion-icon name="logo-github" style="font-size:20px"></ion-icon>&nbsp<a href="{% provider_login_url 'github' %}" style="color:white">Login with Github</a></button>
+             <button class="btn" style="margin-bottom: 20px; text-align: center; width: 220px; height:36px; border:none; border-radius:2px; font-size: 15px; transition:0.2s; color:white;background-color:rgb(21, 159, 240)"><ion-icon name="logo-twitter" style="font-size:20px"></ion-icon>&nbsp<a href="{% provider_login_url 'twitter' %}" style="color:white">Login with Twitter</a></button>
+
 </form>
       </div>
        <div class="modal-footer">
@@ -200,6 +202,8 @@ SignUp
   crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     {% block js %} {% endblock %}
   </body>
 </html>

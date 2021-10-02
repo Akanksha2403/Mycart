@@ -36,13 +36,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social_django',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
-
+    'allauth.socialaccount.providers.twitter',
 
 
 ]
